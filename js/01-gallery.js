@@ -28,19 +28,22 @@ function onModalOpen(e) {
         return
     }
 
-    const src = e.target.dataset.source;
-
     const instance = basicLightbox.create(`
-    <img src="${src}" width="800" height="600">
-    `)
-
-    instance.show()
-
-    window.addEventListener('keydown', onModalClose);
-    function onModalClose(e) {
-        if (e.code === "Escape") {
-            instance.close();
-            window.removeEventListener('keydown', onModalClose);
+    <img src="${e.target.dataset.source}" width="800" height="600">
+    `, {
+      onShow: () => {
+        window.addEventListener('keydown', onModalClose)
+      },
+      onClose: () => {
+        window.removeEventListener('keydown', onModalClose)
+      }
+    })
+  
+  instance.show()
+  
+  function onModalClose(e) {
+          if (e.code === 'Escape') {
+            instance.close()
+          }
         }
-    }
 }

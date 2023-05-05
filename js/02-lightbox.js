@@ -15,19 +15,9 @@ function createMarkup(galleryItems) {
 </li>`).join('');
 }
 
-galleryList.addEventListener('click', onModalOpen);
 
-function onModalOpen(e) {
-    e.preventDefault()
-
-    if (e.target.nodeName !== "IMG") {
-        return
-    }
-
-
-   const gallery = new SimpleLightbox('.gallery a', {
-       captions: true,
-       captionDelay: 250,
-       captionsData: "alt",
-   });
-}
+new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionDelay: 250,
+    captionsData: "alt",
+});
